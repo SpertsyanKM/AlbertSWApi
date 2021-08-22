@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import {View} from 'react-native';
 
 type ContainerProps = {
   root: boolean;
 };
-export const Container = styled.View<ContainerProps>`
+export const Container = styled(View)<ContainerProps>`
   ${(props: ContainerProps) =>
     props.root
       ? `

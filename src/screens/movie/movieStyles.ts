@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {SafeAreaView, ScrollView} from 'react-native';
+import {SafeAreaView, ScrollView, Text} from 'react-native';
 import {Typography} from '../../modules/styles';
 import Padding from '../../modules/styles/padding';
 
@@ -13,21 +13,21 @@ export const Content = styled(ScrollView).attrs({
   },
 })``;
 
-export const Episode = styled.Text`
+export const Episode = styled(Text)`
   ${Typography.primary.l.regular}
 `;
 
-export const ReleaseDate = styled.Text`
+export const ReleaseDate = styled(Text)`
   ${Typography.primary.l.regular}
   paddingTop: ${Padding.m}px;
 `;
 
-export const CharactersHeader = styled.Text`
+export const CharactersHeader = styled(Text)`
   ${Typography.primary.l.bold}
   paddingTop: ${Padding.l}px;
   paddingBottom: ${Padding.m}px;
 `;
 
-export const ErrorMessage = styled.Text`
+export const ErrorMessage = styled(Text)`
   ${Typography.primary.m.regular}
 `;
