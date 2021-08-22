@@ -7,6 +7,11 @@ export const Container = styled(SafeAreaView)`
   flex: 1;
 `;
 
+export const AdditionalText = styled.Text`
+  ${Typography.primary.m.regular}
+  alignSelf: center;
+`;
+
 export const ErrorMessage = styled.Text`
   ${Typography.primary.m.regular}
   padding: ${Padding.m}px;

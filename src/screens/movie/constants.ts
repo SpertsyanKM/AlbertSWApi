@@ -1,0 +1,1 @@
+export const SHOWN_CHARACTERS_COUNT = 5;

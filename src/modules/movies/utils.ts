@@ -8,5 +8,6 @@ export const convertApiMovie: ApiMovieConverter = (movieApi: MovieApi) => {
     releaseDate,
     releaseYear: releaseDate.getFullYear(),
     episodeId: movieApi.episode_id,
+    characters: movieApi.characters,
   };
 };

@@ -1,9 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {Movie} from '../../modules/movies/types';
+import {Character, Movie} from '../../modules/movies/types';
 import {NavigationProp} from '../../modules/navigation';
-import {Container, Content, Episode, ReleaseDate, CharactersHeader} from './movieStyles';
+import {
+  Container,
+  Content,
+  Episode,
+  ReleaseDate,
+  CharactersHeader,
+  ErrorMessage,
+} from './movieStyles';
 import Loader from '../../components/loader';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
+import MoviesService from '../../modules/movies';
+import CharacterView from './character';
+import {SHOWN_CHARACTERS_COUNT} from './constants';
+import {AdditionalText} from '../movies/moviesStyles';
 
 type NavigationParams = {
   movie: Movie;
@@ -12,6 +23,32 @@ type Props = NavigationProp<NavigationParams>;
 
 const MovieScreen: NavigationStackScreenComponent<Props> = ({navigation}) => {
   const movie = navigation?.state?.params?.movie;
+  const [areCharactersLoading, setAreCharactersLoading] = useState(true);
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [charactersLoadingFailed, setCharactersLoadingFailed] = useState(false);
+
+  useEffect(() => {
+    if (!movie) {
+      return;
+    }
+
+    MoviesService.fetchCharacters(
+      movie.characters.slice(0, SHOWN_CHARACTERS_COUNT),
+    )
+      .then(loadedCharacters => {
+        setCharacters(loadedCharacters);
+        setCharactersLoadingFailed(false);
+      })
+      .catch(_ => setCharactersLoadingFailed(true))
+      .finally(() => setAreCharactersLoading(false));
+  }, [
+    movie,
+    setAreCharactersLoading,
+    setCharacters,
+    setCharactersLoadingFailed,
+  ]);
+
+  const hiddenCharactersCount = movie?.characters?.length - SHOWN_CHARACTERS_COUNT;
 
   return (
     <Container>
@@ -23,6 +60,22 @@ const MovieScreen: NavigationStackScreenComponent<Props> = ({navigation}) => {
             Released at {movie.releaseDate.toLocaleDateString()}
           </ReleaseDate>
           <CharactersHeader>Characters</CharactersHeader>
+          {areCharactersLoading && <Loader />}
+          {!areCharactersLoading && !charactersLoadingFailed && (
+            <>
+              {characters.map(character => (
+                <CharacterView character={character} key={character.url} />
+              ))}
+              {hiddenCharactersCount > 0 && (
+                <AdditionalText>
+                  and {hiddenCharactersCount} more.
+                </AdditionalText>
+              )}
+            </>
+          )}
+          {charactersLoadingFailed && (
+            <ErrorMessage>Failed to load characters</ErrorMessage>
+          )}
         </Content>
       )}
     </Container>

@@ -17,10 +17,12 @@ const Movies: React.FC<Props> = ({navigation}) => {
     MoviesService.fetchMovies()
       .then(fetchedMovies => {
         setMovies(fetchedMovies);
-        setIsLoading(false);
         setLoadingFailed(false);
       })
-      .catch(_ => setLoadingFailed(true));
+      .catch(_ => {
+        setLoadingFailed(true);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   const onMoviePress = (movie: Movie) => {
@@ -33,7 +35,7 @@ const Movies: React.FC<Props> = ({navigation}) => {
 
   return (
     <Container>
-      {isLoading && <Loader />}
+      {isLoading && <Loader root />}
       {!isLoading && !loadingFailed && (
         <FlatList
           data={movies}

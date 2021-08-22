@@ -1,8 +1,20 @@
 import styled from 'styled-components';
-import {StyleSheet} from 'react-native';
 
-export const Container = styled.View({
-  ...StyleSheet.absoluteFillObject,
-  alignItems: 'center',
-  justifyContent: 'center',
-});
+type ContainerProps = {
+  root: boolean;
+};
+export const Container = styled.View<ContainerProps>`
+  ${(props: ContainerProps) =>
+    props.root
+      ? `
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  `
+      : `
+  `}
+  alignItems: center;
+  justifyContent: center;
+`;

@@ -25,4 +25,9 @@ export const ReleaseDate = styled.Text`
 export const CharactersHeader = styled.Text`
   ${Typography.primary.l.bold}
   paddingTop: ${Padding.l}px;
+  paddingBottom: ${Padding.m}px;
+`;
+
+export const ErrorMessage = styled.Text`
+  ${Typography.primary.m.regular}
 `;

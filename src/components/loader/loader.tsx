@@ -3,9 +3,13 @@ import {Container} from './loaderStyles';
 import {ActivityIndicator} from 'react-native';
 import {Color} from '../../modules/styles';
 
-const Loader: React.FC = () => {
+type Props = {
+  root?: boolean;
+};
+
+const Loader: React.FC<Props> = ({root = false}) => {
   return (
-    <Container>
+    <Container root={root}>
       <ActivityIndicator animating color={Color.Primary} size="large" />
     </Container>
   );
