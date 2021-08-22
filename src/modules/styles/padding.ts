@@ -1,9 +1,9 @@
 const Padding = {
-  xs: '2px',
-  s: '4px',
-  m: '8px',
-  l: '16px',
-  xl: '32px',
+  xs: 2,
+  s: 4,
+  m: 8,
+  l: 16,
+  xl: 32,
 };
 
 export default Padding;

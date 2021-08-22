@@ -9,5 +9,5 @@ export const Container = styled(SafeAreaView)`
 
 export const ErrorMessage = styled.Text`
   ${Typography.primary.m.regular}
-  padding: ${Padding.m};
+  padding: ${Padding.m}px;
 `;

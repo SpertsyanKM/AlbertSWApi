@@ -3,7 +3,7 @@ import {Color, Typography} from '../../modules/styles';
 import Padding from '../../modules/styles/padding';
 
 export const Container = styled.View`
-  padding: ${Padding.m};
+  padding: ${Padding.m}px;
   borderBottomColor: ${Color.Grey};
   borderBottomWidth: 1px;
 `;
