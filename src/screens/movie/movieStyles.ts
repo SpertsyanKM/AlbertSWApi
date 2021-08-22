@@ -31,3 +31,8 @@ export const CharactersHeader = styled(Text)`
 export const ErrorMessage = styled(Text)`
   ${Typography.primary.m.regular}
 `;
+
+export const AdditionalText = styled(Text)`
+  ${Typography.primary.m.regular}
+  alignSelf: center;
+`;

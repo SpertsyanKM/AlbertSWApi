@@ -8,13 +8,13 @@ import {
   ReleaseDate,
   CharactersHeader,
   ErrorMessage,
+  AdditionalText,
 } from './movieStyles';
 import Loader from '../../components/loader';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import MoviesService from '../../modules/movies';
 import CharacterView from './character';
 import {SHOWN_CHARACTERS_COUNT} from './constants';
-import {AdditionalText} from '../movies/moviesStyles';
 
 type NavigationParams = {
   movie: Movie;
