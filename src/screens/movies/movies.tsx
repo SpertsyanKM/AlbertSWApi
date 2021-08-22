@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {MovieList} from '../../modules/movies/types';
+import {Movie, MovieList} from '../../modules/movies/types';
 import MoviesService from '../../modules/movies';
-import {Text} from 'react-native';
+import {FlatList, ListRenderItem, SafeAreaView} from 'react-native';
+import MoviePreview from './moviePreview';
 
 const Movies: React.FC = () => {
   const [movies, setMovies] = useState<MovieList>([]);
@@ -10,12 +11,18 @@ const Movies: React.FC = () => {
     MoviesService.fetchMovies().then(fetchedMovies => setMovies(fetchedMovies));
   }, []);
 
+  const renderMovie: ListRenderItem<Movie> = ({item}) => (
+    <MoviePreview movie={item} />
+  );
+
   return (
-    <>
-      {movies.map(movie => (
-        <Text key={movie.episodeId}>{movie.title}</Text>
-      ))}
-    </>
+    <SafeAreaView>
+      <FlatList
+        data={movies}
+        renderItem={renderMovie}
+        keyExtractor={item => item.episodeId.toString()}
+      />
+    </SafeAreaView>
   );
 };
 
