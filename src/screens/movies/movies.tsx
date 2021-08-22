@@ -5,8 +5,10 @@ import {FlatList, ListRenderItem} from 'react-native';
 import MoviePreview from './moviePreview';
 import Loader from '../../components/loader';
 import {Container, ErrorMessage} from './moviesStyles';
+import {NavigationProp, Screens} from '../../modules/navigation';
 
-const Movies: React.FC = () => {
+type Props = NavigationProp<{}>;
+const Movies: React.FC<Props> = ({navigation}) => {
   const [movies, setMovies] = useState<MovieList>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingFailed, setLoadingFailed] = useState(false);
@@ -21,8 +23,12 @@ const Movies: React.FC = () => {
       .catch(_ => setLoadingFailed(true));
   }, []);
 
+  const onMoviePress = (movie: Movie) => {
+    navigation.navigate(Screens.Movie, {movie});
+  };
+
   const renderMovie: ListRenderItem<Movie> = ({item}) => (
-    <MoviePreview movie={item} />
+    <MoviePreview movie={item} onPress={onMoviePress} />
   );
 
   return (
@@ -35,9 +41,7 @@ const Movies: React.FC = () => {
           keyExtractor={item => item.episodeId.toString()}
         />
       )}
-      {loadingFailed && (
-        <ErrorMessage>Failed to load data.</ErrorMessage>
-      )}
+      {loadingFailed && <ErrorMessage>Failed to load data.</ErrorMessage>}
     </Container>
   );
 };
