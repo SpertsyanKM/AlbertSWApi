@@ -1,11 +1,16 @@
 import Color from './color';
 
-const common = `
-  font-family: "PT serif";
-`;
+const common = '';
 
 const Typography = {
   primary: {
+    s: {
+      regular: `
+        ${common}
+        fontSize: 12px;
+        color: ${Color.TextPrimary};
+      `,
+    },
     m: {
       regular: `
         ${common}

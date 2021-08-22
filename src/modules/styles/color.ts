@@ -3,7 +3,7 @@ const Color = {
   TextPrimary: '#121212',
   TextSecondary: '#444444',
   RippleGrey: '#999999',
-  Grey: '#bdbdbd',
+  BorderGrey: '#bdbdbd',
   BackgroundWhite: 'white',
 };
 

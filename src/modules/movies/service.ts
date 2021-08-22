@@ -1,4 +1,4 @@
-import {Character, MovieApi, MovieList} from './types';
+import {Character, MovieApi, MovieList, Species} from './types';
 import {getApi} from '../api';
 import {convertApiMovie} from './utils';
 
@@ -14,9 +14,16 @@ const fetchCharacters: CharactersFetcher = async urls => {
   return await Promise.all(promises);
 };
 
+type SpeciesFetcher = (urls: string[]) => Promise<Species[]>;
+const fetchSpecies: SpeciesFetcher = async urls => {
+  const promises = urls.map(url => getApi<Species>(url, true));
+  return await Promise.all(promises);
+};
+
 const MoviesService = {
   fetchMovies,
   fetchCharacters,
+  fetchSpecies,
 };
 
 export default MoviesService;

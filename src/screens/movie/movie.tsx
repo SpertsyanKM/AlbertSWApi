@@ -48,7 +48,8 @@ const MovieScreen: NavigationStackScreenComponent<Props> = ({navigation}) => {
     setCharactersLoadingFailed,
   ]);
 
-  const hiddenCharactersCount = movie?.characters?.length - SHOWN_CHARACTERS_COUNT;
+  const hiddenCharactersCount =
+    movie?.characters?.length - SHOWN_CHARACTERS_COUNT;
 
   return (
     <Container>
@@ -63,8 +64,12 @@ const MovieScreen: NavigationStackScreenComponent<Props> = ({navigation}) => {
           {areCharactersLoading && <Loader />}
           {!areCharactersLoading && !charactersLoadingFailed && (
             <>
-              {characters.map(character => (
-                <CharacterView character={character} key={character.url} />
+              {characters.map((character, index) => (
+                <CharacterView
+                  character={character}
+                  isLast={index + 1 === characters.length}
+                  key={character.url}
+                />
               ))}
               {hiddenCharactersCount > 0 && (
                 <AdditionalText>

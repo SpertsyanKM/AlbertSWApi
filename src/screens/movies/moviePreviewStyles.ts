@@ -4,7 +4,7 @@ import Padding from '../../modules/styles/padding';
 
 export const Container = styled.View`
   padding: ${Padding.m}px;
-  borderBottomColor: ${Color.Grey};
+  borderBottomColor: ${Color.BorderGrey};
   borderBottomWidth: 1px;
 `;
 
